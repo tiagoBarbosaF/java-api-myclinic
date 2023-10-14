@@ -1,4 +1,4 @@
-package med.myclinic.api.doctor;
+package med.myclinic.api.patient;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,11 +10,10 @@ import jakarta.validation.constraints.Pattern;
 import med.myclinic.api.address.AddressDataRecord;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DoctorsDataRecords(
+public record PatientsDataRecord(
         @NotBlank @JsonAlias("nome") String name,
         @NotBlank @Email @JsonAlias("email") String email,
-        @NotBlank @Pattern(regexp = "\\d{4,6}", message = "Field needs to have 4 to 6 characters.") @JsonAlias("crm") String crm,
         @NotBlank @JsonAlias("telefone") String phone,
-        @NotNull @JsonAlias("especialidade") Specialty specialty,
+        @NotBlank @Pattern(regexp = "\\d{11}", message = "Field cpf need has 11 characters.") @JsonAlias("cpf") String cpf,
         @NotNull @Valid @JsonAlias("endereco") AddressDataRecord addressDataRecord) {
 }

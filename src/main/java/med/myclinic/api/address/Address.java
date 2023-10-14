@@ -1,14 +1,30 @@
 package med.myclinic.api.address;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public record Address(@JsonAlias("logradouro") String publicPlace,
-                      @JsonAlias("bairro") String Neighborhood,
-                      @JsonAlias("cep") String zipCode,
-                      @JsonAlias("cidade") String city,
-                      @JsonAlias("uf") String uf,
-                      @JsonAlias("numero") String number,
-                      @JsonAlias("complemento") String complement) {
+@Embeddable
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Address {
+    private String publicPlace;
+    private String neighborhood;
+    private String zipCode;
+    private String city;
+    private String uf;
+    private String number;
+    private String complement;
+
+    public Address(AddressDataRecord addressDataRecord) {
+        this.publicPlace = addressDataRecord.publicPlace();
+        this.neighborhood = addressDataRecord.neighborhood();
+        this.zipCode = addressDataRecord.zipCode();
+        this.city = addressDataRecord.city();
+        this.uf = addressDataRecord.uf();
+        this.number = addressDataRecord.number();
+        this.complement = addressDataRecord.complement();
+    }
 }
