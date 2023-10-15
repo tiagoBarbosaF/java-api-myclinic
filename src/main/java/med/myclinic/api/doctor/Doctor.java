@@ -14,7 +14,8 @@ import med.myclinic.api.address.Address;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Doctor {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -24,6 +25,7 @@ public class Doctor {
     private Specialty specialty;
     @Embedded
     private Address address;
+    private Boolean status;
 
     public Doctor(DoctorsDataRecords doctorsDataRecords) {
         this.name = doctorsDataRecords.name();
@@ -32,5 +34,24 @@ public class Doctor {
         this.phone = doctorsDataRecords.phone();
         this.specialty = doctorsDataRecords.specialty();
         this.address = new Address(doctorsDataRecords.addressDataRecord());
+        this.status = true;
+    }
+
+    public void updateData(DoctorsDataUpdate data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+
+        if (data.phone() != null) {
+            this.phone = data.phone();
+        }
+
+        if (data.addressDataRecord() != null) {
+            this.address.updateData(data.addressDataRecord());
+        }
+    }
+
+    public void delete() {
+        this.status = false;
     }
 }

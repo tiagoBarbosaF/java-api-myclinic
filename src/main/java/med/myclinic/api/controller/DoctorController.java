@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import med.myclinic.api.doctor.Doctor;
 import med.myclinic.api.doctor.DoctorsDataList;
 import med.myclinic.api.doctor.DoctorsDataRecords;
+import med.myclinic.api.doctor.DoctorsDataUpdate;
 import med.myclinic.api.doctor.interfaces.IDoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,21 @@ public class DoctorController {
     }
 
     @GetMapping
-    public Page<DoctorsDataList> listDoctors(@PageableDefault(size = 100, sort = {"name"}) Pageable pagination) {
-        return repository.findAll(pagination).map(DoctorsDataList::new);
+    public Page<DoctorsDataList> listDoctors(@PageableDefault(size = 100, sort = {"id"}) Pageable pagination) {
+        return repository.findAllByStatusTrue(pagination).map(DoctorsDataList::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid DoctorsDataUpdate data) {
+        var doctor = repository.getReferenceById(data.id());
+        doctor.updateData(data);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        var doctor = repository.getReferenceById(id);
+        doctor.delete();
     }
 }

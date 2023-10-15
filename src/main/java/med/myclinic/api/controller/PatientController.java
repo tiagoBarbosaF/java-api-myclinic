@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import med.myclinic.api.patient.Patient;
 import med.myclinic.api.patient.PatientsDataList;
 import med.myclinic.api.patient.PatientsDataRecord;
+import med.myclinic.api.patient.PatientsDataUpdate;
 import med.myclinic.api.patient.interfaces.IPatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,21 @@ public class PatientController {
     }
 
     @GetMapping
-    public Page<PatientsDataList> listPatients(@PageableDefault(size = 10, sort = {"name"})Pageable pagination){
-        return repository.findAll(pagination).map(PatientsDataList::new);
+    public Page<PatientsDataList> listPatients(@PageableDefault(size = 10, sort = {"name"}) Pageable pagination) {
+        return repository.findAllByStatusTrue(pagination).map(PatientsDataList::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid PatientsDataUpdate data) {
+        var patient = repository.getReferenceById(data.id());
+        patient.updateData(data);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        var patient = repository.getReferenceById(id);
+        patient.delete();
     }
 }
