@@ -1,11 +1,11 @@
-package med.myclinic.api.patient;
+package med.myclinic.api.domain.patient;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.myclinic.api.address.Address;
+import med.myclinic.api.domain.address.Address;
 
 @Table(name = "patients")
 @Entity(name = "Patient")

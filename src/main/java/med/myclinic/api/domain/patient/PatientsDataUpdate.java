@@ -1,8 +1,8 @@
-package med.myclinic.api.patient;
+package med.myclinic.api.domain.patient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
-import med.myclinic.api.address.AddressDataRecord;
+import med.myclinic.api.domain.address.AddressDataRecord;
 
 public record PatientsDataUpdate(
         @NotNull Long id,

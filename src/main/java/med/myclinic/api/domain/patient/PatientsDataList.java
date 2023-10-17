@@ -1,4 +1,4 @@
-package med.myclinic.api.patient;
+package med.myclinic.api.domain.patient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

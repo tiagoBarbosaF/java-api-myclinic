@@ -1,8 +1,8 @@
 package med.myclinic.api.controller;
 
 import jakarta.validation.Valid;
-import med.myclinic.api.patient.*;
-import med.myclinic.api.patient.interfaces.IPatientRepository;
+import med.myclinic.api.domain.patient.*;
+import med.myclinic.api.domain.patient.interfaces.IPatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

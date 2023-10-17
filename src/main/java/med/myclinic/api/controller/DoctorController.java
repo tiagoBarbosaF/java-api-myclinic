@@ -1,9 +1,8 @@
 package med.myclinic.api.controller;
 
 import jakarta.validation.Valid;
-import med.myclinic.api.doctor.*;
-import med.myclinic.api.doctor.interfaces.IDoctorRepository;
-import org.apache.coyote.Response;
+import med.myclinic.api.domain.doctor.*;
+import med.myclinic.api.domain.doctor.interfaces.IDoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

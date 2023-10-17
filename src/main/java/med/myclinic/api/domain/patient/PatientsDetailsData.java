@@ -1,6 +1,6 @@
-package med.myclinic.api.patient;
+package med.myclinic.api.domain.patient;
 
-import med.myclinic.api.address.Address;
+import med.myclinic.api.domain.address.Address;
 
 public record PatientsDetailsData(
         Long id,

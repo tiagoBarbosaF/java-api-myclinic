@@ -1,4 +1,4 @@
-package med.myclinic.api.doctor;
+package med.myclinic.api.domain.doctor;
 
 public enum Specialty {
     ORTHOPEDICS,

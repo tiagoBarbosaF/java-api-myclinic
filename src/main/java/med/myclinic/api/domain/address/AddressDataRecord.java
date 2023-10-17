@@ -1,4 +1,4 @@
-package med.myclinic.api.address;
+package med.myclinic.api.domain.address;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
