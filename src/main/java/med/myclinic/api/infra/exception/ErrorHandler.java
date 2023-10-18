@@ -1,4 +1,4 @@
-package med.myclinic.api.infra;
+package med.myclinic.api.infra.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EntityNotFoundException;
