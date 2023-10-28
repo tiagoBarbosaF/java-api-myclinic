@@ -11,5 +11,5 @@ public record AppointmentDetails(
         Long id,
         @JsonProperty("medico_id") Long idDoctor,
         @JsonProperty("paciente_id") Long idPatient,
-        @JsonFormat(pattern = "dd/MM/yyyy HH:mm") LocalDateTime data) {
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm") LocalDateTime date) {
 }

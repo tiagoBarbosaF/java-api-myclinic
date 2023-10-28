@@ -30,4 +30,12 @@ public class Appointment {
     private Patient patient;
 
     private LocalDateTime data;
+
+    @Column(name = "cancellation_reason")
+    @Enumerated(EnumType.STRING)
+    private CancellationReason cancellationReason;
+
+    public void cancel(CancellationReason cancellationReason){
+        this.cancellationReason = cancellationReason;
+    }
 }
