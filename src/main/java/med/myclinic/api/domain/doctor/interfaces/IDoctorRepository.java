@@ -19,10 +19,20 @@ public interface IDoctorRepository extends JpaRepository<Doctor, Long> {
              and d.specialty = :specialty
              and d.id not in (
                  select a.doctor.id from Appointment a
-                 where a.data = :data
+                 where
+                 a.data = :data
+                 and a.cancellationReason is null
              )
              order by rand()
              limit 1
             """)
     Doctor choiceRandomDoctorFreeOnDate(Specialty specialty, LocalDateTime data);
+
+    @Query("""
+            select d.status
+            from Doctor d
+            where
+            d.id = :idDoctor
+            """)
+    Boolean findStatusById(Long idDoctor);
 }

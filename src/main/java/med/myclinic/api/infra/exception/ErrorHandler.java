@@ -2,6 +2,7 @@ package med.myclinic.api.infra.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EntityNotFoundException;
+import med.myclinic.api.exceptions.ValidException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,6 +24,11 @@ public class ErrorHandler {
         var errors = ex.getFieldErrors();
 
         return ResponseEntity.badRequest().body(errors.stream().map(ErrorValidationData::new).toList());
+    }
+
+    @ExceptionHandler(ValidException.class)
+    public ResponseEntity<String> handleErrorBusinessLogic(ValidException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     public record ErrorValidationData(
