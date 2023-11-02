@@ -25,11 +25,13 @@ public class ScheduleAppointments {
     public ScheduleAppointments(IAppointmentRepository repository,
                                 IDoctorRepository doctorRepository,
                                 IPatientRepository patientRepository,
-                                List<IAppointmentSchedulingValidator> validators) {
+                                List<IAppointmentSchedulingValidator> validators,
+                                List<IAppointmentCancellationValidator> cancellationValidators) {
         this.repository = repository;
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.validators = validators;
+        this.cancellationValidators = cancellationValidators;
     }
 
     public AppointmentDetails schedule(AppointmentData data) {
