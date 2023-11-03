@@ -1,5 +1,6 @@
 package med.myclinic.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.myclinic.api.domain.patient.*;
 import med.myclinic.api.domain.patient.interfaces.IPatientRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("patients")
+@SecurityRequirement(name = "bearer-key")
 public class PatientController {
 
     private final IPatientRepository repository;
