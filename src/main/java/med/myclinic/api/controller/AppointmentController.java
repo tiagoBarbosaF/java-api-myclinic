@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @SecurityRequirement(name = "bearer-key")
 public class AppointmentController {
 
-    private ScheduleAppointments scheduleAppointments;
+    private final ScheduleAppointments scheduleAppointments;
 
     @Autowired
     public AppointmentController(ScheduleAppointments scheduleAppointments) {
